@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.Authentication;
+//import org.springframework.security.access.prepost.PreAuthorize;
+//import org.springframework.security.core.Authentication;
 
 import fi.haagahelia.expensetracker.model.Category;
 import fi.haagahelia.expensetracker.model.Expense;
@@ -21,8 +21,7 @@ public class ExpenseController {
     private ExpenseRepository repository;
 
     @GetMapping("/expenselist")
-    public String expenseList(Model model, Authentication authentication) {
-        model.addAttribute("username", authentication.getName());
+    public String expenseList(Model model) {
         model.addAttribute("expenses", repository.findAll());
         return "expenselist";
     }
@@ -40,7 +39,7 @@ public class ExpenseController {
         return "redirect:/expenselist";
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    // @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/deleteexpense/{id}")
     public String deleteExpense(@PathVariable("id") Long id) {
         repository.deleteById(id);
@@ -56,8 +55,8 @@ public class ExpenseController {
         return "editexpense";
     }
 
-    @GetMapping("/login")
-    public String login() {
-        return "login"; // returns login.html
-    }
+    // @GetMapping("/login")
+    // public String login() {
+    // return "login"; // returns login.html
+    // }
 }
