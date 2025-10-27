@@ -20,18 +20,18 @@ public class Expense {
     @Enumerated(EnumType.STRING)
     private Category category;
 
-    private double price;
+    private double amount;
     private LocalDate date;
     private String comment;
 
     public Expense() {
     }
 
-    public Expense(String name, Category category, double price, LocalDate date, String comment) {
+    public Expense(String name, Category category, double amount, LocalDate date, String comment) {
         super();
         this.name = name;
         this.category = category;
-        this.price = price;
+        this.amount = amount;
         this.date = date;
         this.comment = comment;
     }
@@ -60,12 +60,12 @@ public class Expense {
         this.category = category;
     }
 
-    public double getPrice() {
-        return price;
+    public double getAmount() {
+        return amount;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public void setAmount(double amount) {
+        this.amount = amount;
     }
 
     public LocalDate getDate() {
@@ -86,7 +86,8 @@ public class Expense {
 
     @Override
     public String toString() {
-        return "Expense id=" + getId() + ", name=" + getName() + ", category=" + getCategory() + ", price=" + getPrice()
+        return "Expense id=" + getId() + ", name=" + getName() + ", category=" + getCategory() + ", amount="
+                + getAmount()
                 + ", date="
                 + getDate() +
                 ", comment=" + getComment() + ".";

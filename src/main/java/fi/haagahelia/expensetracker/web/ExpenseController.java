@@ -10,18 +10,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 
+import fi.haagahelia.expensetracker.model.Category;
 import fi.haagahelia.expensetracker.model.Expense;
 import fi.haagahelia.expensetracker.model.ExpenseRepository;
-//import fi.haagahelia.alisabookstore.model.CategoryRepository;
 
 @Controller
 public class ExpenseController {
 
     @Autowired
     private ExpenseRepository repository;
-
-    // @Autowired
-    // private CategoryRepository crepository;
 
     @GetMapping("/expenselist")
     public String expenseList(Model model, Authentication authentication) {
@@ -33,6 +30,7 @@ public class ExpenseController {
     @GetMapping("/addexpense")
     public String addExpenseForm(Model model) {
         model.addAttribute("expense", new Expense());
+        model.addAttribute("categories", Category.values());
         return "addexpense";
     }
 
@@ -54,6 +52,7 @@ public class ExpenseController {
         Expense expense = repository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid expense Id:" + id));
         model.addAttribute("expense", expense);
+        model.addAttribute("categories", Category.values());
         return "editexpense";
     }
 

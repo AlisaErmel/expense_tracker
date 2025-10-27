@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>EditExpense</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+    <h1>Edit an Expense</h1>
+    <div>
+        <form th:object="${expense}" th:action="@{/saveexpense}" action="#" method="post">
+            <input type="hidden" th:field="*{id}" />
+            <input type="text" th:field="*{name}" />
+
+            <label for="category">Category</label>
+            <select id="category" th:field="*{category}">
+                <option th:each="cat : ${categories}" th:value="${cat}" th:text="${cat}"></option>
+            </select>
+
+            <input type="number" th:field="*{amount}" />
+            <input type="date" th:field="*{date}" />
+            <input type="text" th:field="*{comment}" />
+            <button type="submit">Save</button>
+        </form>
+    </div>
+</body>
+
+</html>
