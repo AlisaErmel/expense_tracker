@@ -25,10 +25,10 @@ public class ExpensetrackerApplication {
 	}
 
 	@Bean
-	public CommandLineRunner bookDemo(ExpenseRepository repository, AppUserRepository arepository) {
+	public CommandLineRunner expenseDemo(ExpenseRepository repository, AppUserRepository arepository) {
 		return (args) -> {
 
-			log.info("Saving some example books...");
+			log.info("Saving some example expenses...");
 			repository.save(new Expense("Taxi", Category.Transport, 34, LocalDate.parse("2025-10-20"), "from airport"));
 			repository.save(new Expense("Coffee", Category.Food, 5, LocalDate.parse("2025-10-21"), "in uni"));
 			repository.save(
@@ -44,7 +44,7 @@ public class ExpensetrackerApplication {
 			arepository.save(user1);
 			arepository.save(user2);
 
-			log.info("Fetching all books:");
+			log.info("Fetching all expenses:");
 			for (Expense expense : repository.findAll()) {
 				log.info(expense.toString());
 			}
