@@ -9,6 +9,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import fi.haagahelia.expensetracker.model.AppUser;
+import fi.haagahelia.expensetracker.model.AppUserRepository;
 import fi.haagahelia.expensetracker.model.Category;
 import fi.haagahelia.expensetracker.model.Expense;
 import fi.haagahelia.expensetracker.model.ExpenseRepository;
@@ -23,7 +25,7 @@ public class ExpensetrackerApplication {
 	}
 
 	@Bean
-	public CommandLineRunner bookDemo(ExpenseRepository repository) {
+	public CommandLineRunner bookDemo(ExpenseRepository repository, AppUserRepository arepository) {
 		return (args) -> {
 
 			log.info("Saving some example books...");
@@ -33,14 +35,14 @@ public class ExpensetrackerApplication {
 					new Expense("Museum", Category.Entertainment, 12, LocalDate.parse("2025-10-18"), "Impressionism"));
 
 			// Create users: admin/password2 user/password
-			// AppUser user1 = new AppUser("user",
-			// "$2a$12$sC0PNpiaqWZAVc5Y2BgWqe.24ZhxLGC1pc3WpKsAfYD0lUDK3DPwK",
-			// "USER");
-			// AppUser user2 = new AppUser("admin",
-			// "$2a$12$UvNDCyZrgmGm7/EEKiwMNOgKiEb4z0r3QA2KG.RfbOKvBnUnyIlZK",
-			// "ADMIN");
-			// arepository.save(user1);
-			// arepository.save(user2);
+			AppUser user1 = new AppUser("user",
+					"$2a$12$sC0PNpiaqWZAVc5Y2BgWqe.24ZhxLGC1pc3WpKsAfYD0lUDK3DPwK",
+					"USER");
+			AppUser user2 = new AppUser("admin",
+					"$2a$12$UvNDCyZrgmGm7/EEKiwMNOgKiEb4z0r3QA2KG.RfbOKvBnUnyIlZK",
+					"ADMIN");
+			arepository.save(user1);
+			arepository.save(user2);
 
 			log.info("Fetching all books:");
 			for (Expense expense : repository.findAll()) {
