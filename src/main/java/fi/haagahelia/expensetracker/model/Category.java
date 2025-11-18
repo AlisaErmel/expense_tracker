@@ -7,5 +7,8 @@ public enum Category {
     Entertainment,
     Health,
     Utilities,
+    Travel,
+    Shopping,
+    Bills,
     Other
 }

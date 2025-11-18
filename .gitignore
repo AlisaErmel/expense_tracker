@@ -31,3 +31,10 @@ build/
 
 ### VS Code ###
 .vscode/
+
+#Keystore
+keystore.p12
+
+# Maven binaries
+apache-maven-*/
+apache-maven-*.tar.gz

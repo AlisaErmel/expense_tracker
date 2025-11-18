@@ -1,6 +1,6 @@
 package fi.haagahelia.expensetracker;
 
-import java.time.LocalDate;
+//import java.time.LocalDate;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Bean;
 
 import fi.haagahelia.expensetracker.model.AppUser;
 import fi.haagahelia.expensetracker.model.AppUserRepository;
-import fi.haagahelia.expensetracker.model.Category;
+//import fi.haagahelia.expensetracker.model.Category;
 import fi.haagahelia.expensetracker.model.Expense;
 import fi.haagahelia.expensetracker.model.ExpenseRepository;
 
@@ -29,10 +29,13 @@ public class ExpensetrackerApplication {
 		return (args) -> {
 
 			log.info("Saving some example expenses...");
-			repository.save(new Expense("Taxi", Category.Transport, 34, LocalDate.parse("2025-10-20"), "from airport"));
-			repository.save(new Expense("Coffee", Category.Food, 5, LocalDate.parse("2025-10-21"), "in uni"));
-			repository.save(
-					new Expense("Museum", Category.Entertainment, 12, LocalDate.parse("2025-10-18"), "Impressionism"));
+			// repository.save(new Expense("Taxi", Category.Transport, 34,
+			// LocalDate.parse("2025-10-20"), "from airport"));
+			// repository.save(new Expense("Coffee", Category.Food, 5,
+			// LocalDate.parse("2025-10-21"), "in uni"));
+			// repository.save(
+			// new Expense("Museum", Category.Entertainment, 12,
+			// LocalDate.parse("2025-10-18"), "Impressionism"));
 
 			// Create users: admin/admin user/user
 			AppUser user1 = new AppUser("user",
@@ -41,8 +44,8 @@ public class ExpensetrackerApplication {
 			AppUser user2 = new AppUser("admin",
 					"$2a$12$T4nNEcyYBxYoKy1vkI0EzeIdfgrMMJdy5m9JIMr/63PZ/RNvJnHL2",
 					"ADMIN");
-			arepository.save(user1);
-			arepository.save(user2);
+			// arepository.save(user1);
+			// arepository.save(user2);
 
 			log.info("Fetching all expenses:");
 			for (Expense expense : repository.findAll()) {

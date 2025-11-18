@@ -1,6 +1,6 @@
 package fi.haagahelia.expensetracker;
 
-import static org.springframework.boot.autoconfigure.security.servlet.PathRequest.toH2Console;
+//import static org.springframework.boot.autoconfigure.security.servlet.PathRequest.toH2Console;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -31,7 +31,7 @@ public class SecurityConfig {
                                 authorize -> authorize
                                                 .requestMatchers("/css/**").permitAll()
                                                 .requestMatchers("/api/**").permitAll()
-                                                .requestMatchers(toH2Console()).permitAll() // for h2console
+                                                // .requestMatchers(toH2Console()).permitAll() // for h2console
                                                 .requestMatchers("/login", "/logout").permitAll()
                                                 .anyRequest().authenticated())
                                 .headers(headers -> headers.frameOptions(frameOptions -> frameOptions
