@@ -37,12 +37,12 @@ public class ExpensetrackerApplication {
 			// new Expense("Museum", Category.Entertainment, 12,
 			// LocalDate.parse("2025-10-18"), "Impressionism"));
 
-			// Create users: admin/admin user/user
+			// Create users: admin/password2 user/password
 			AppUser user1 = new AppUser("user",
-					"$2a$12$aqclPxIymLl/qtLBqsW4GeuRr6MYjYnWnrp9iWOfV3LVLt9qaN1Wy",
+					"$2a$12$wlbmWd349vZNzPLPmP8MxOsz468wI9nX3ArS7ScATl3vUqhQ2pK6m",
 					"USER");
 			AppUser user2 = new AppUser("admin",
-					"$2a$12$T4nNEcyYBxYoKy1vkI0EzeIdfgrMMJdy5m9JIMr/63PZ/RNvJnHL2",
+					"$2a$12$0cLtK9KNAwkFnzkFItqYIubz7A8MVyoc8Old8U1FvIDrusCd/kSpa",
 					"ADMIN");
 			// arepository.save(user1);
 			// arepository.save(user2);

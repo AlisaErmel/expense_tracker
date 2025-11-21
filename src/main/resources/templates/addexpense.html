@@ -2,36 +2,96 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 
 <head>
-    <title>AddExpense</title>
+    <title>Add Expense</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+
+    <style>
+        body {
+            background-color: #f5f7fa;
+        }
+
+        .main-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 50px auto;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+
+        .form-label {
+            font-weight: 500;
+        }
+
+        .form-control,
+        .btn {
+            border-radius: 8px;
+        }
+
+        .btn-save {
+            width: 100%;
+            font-size: 1rem;
+            padding: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+    </style>
 </head>
 
 <body>
-    <div class="container mt-4">
-        <h1>Add a new Expense</h1>
-        <div>
-            <form th:object="${expense}" th:action="@{saveexpense}" action="#" method="post">
-                <label for="name">Name</label>
-                <input type="text" id="name" th:field="*{name}" required />
+    <div class="container">
 
-                <label for="category">Category</label>
-                <select id="category" th:field="*{category}">
-                    <option th:each="cat : ${categories}" th:value="${cat}" th:text="${cat}"></option>
-                </select>
+        <div class="main-card">
 
-                <label for="amount">Amount</label>
-                <input type="number" id="amount" step="0.01" th:field="*{amount}" required />
+            <h1>Add New Expense</h1>
 
-                <label for="date">Date</label>
-                <input type="date" id="date" th:field="*{date}" required />
+            <form th:object="${expense}" th:action="@{/saveexpense}" method="post">
 
-                <label for="comment">Comment</label>
-                <input type="text" id="comment" th:field="*{comment}" />
+                <div class="form-group">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" id="name" th:field="*{name}" class="form-control"
+                        placeholder="Enter expense name" required />
+                </div>
 
-                <button type="submit" value="Save">Save</button>
+                <div class="form-group">
+                    <label for="category" class="form-label">Category</label>
+                    <select id="category" th:field="*{category}" class="form-select">
+                        <option th:each="cat : ${categories}" th:value="${cat}" th:text="${cat}"></option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="amount" class="form-label">Amount</label>
+                    <input type="number" id="amount" step="0.01" th:field="*{amount}" class="form-control"
+                        placeholder="Enter amount" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="date" class="form-label">Date</label>
+                    <input type="date" id="date" th:field="*{date}" class="form-control" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="comment" class="form-label">Comment</label>
+                    <input type="text" id="comment" th:field="*{comment}" class="form-control"
+                        placeholder="Optional comment" />
+                </div>
+
+                <button type="submit" class="btn btn-success btn-save mt-3">💾 Save Expense</button>
+
             </form>
+
         </div>
+
     </div>
 </body>
 

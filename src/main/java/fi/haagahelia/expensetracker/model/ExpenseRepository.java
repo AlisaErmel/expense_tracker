@@ -6,4 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ExpenseRepository extends JpaRepository<Expense, Long> {
     List<Expense> findByName(String name);
+
+    List<Expense> findAllByOrderByIdDesc();
 }

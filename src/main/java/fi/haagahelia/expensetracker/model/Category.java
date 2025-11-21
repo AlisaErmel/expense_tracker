@@ -1,6 +1,7 @@
 package fi.haagahelia.expensetracker.model;
 
 public enum Category {
+    Choose,
     Food,
     Transport,
     Rent,

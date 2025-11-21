@@ -2,51 +2,110 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 
 <head>
-    <title>Expenselist</title>
+    <title>Expense List</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+
+    <style>
+        body {
+            background-color: #f5f7fa;
+        }
+
+        .page-title {
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .welcome-box {
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+        }
+
+        .table thead th {
+            background-color: #495057;
+            color: white;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .main-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+        }
+
+        .logout-box {
+            margin-top: 20px;
+            text-align: right;
+        }
+    </style>
 </head>
 
 <body>
-    <div class="container mt-4">
-        <p>Welcome, <span th:text="${username}"></span>!</p>
-        <h1>Expenses</h1>
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Category</th>
-                    <th>Amount</th>
-                    <th>Date</th>
-                    <th>Comment</th>
-                    <th></th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="expense : ${expenses}">
-                    <td th:text="${expense.name}"></td>
-                    <td th:text="${expense.category}"></td>
-                    <td th:text="${expense.amount}"></td>
-                    <td th:text="${expense.date}"></td>
-                    <td th:text="${expense.comment}"></td>
-                    <td>
-                        <div sec:authorize="hasRole('ADMIN')">
-                            <a th:href="@{/deleteexpense/{id}(id=${expense.id})}" class="btn btn-danger">Delete</a>
-                        </div>
-                    </td>
+    <div class="container mt-5">
 
-                    <td>
-                        <a th:href="@{/editexpense/{id}(id=${expense.id})}" class="btn btn-primary">Edit</a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <a href="/addexpense" class="btn btn-success">Add Expense</a>
-        <div class="col-md-4" style="padding:20px 0">
-            <form th:action="@{/logout}" method="post">
-                <input type="submit" value="Log out" class="btn btn-sm btn-danger" />
-            </form>
+        <div class="main-card">
+
+            <div class="welcome-box">
+                Welcome, <span class="badge bg-primary" th:text="${username}"></span>!
+            </div>
+
+            <h1 class="page-title">💰 Expense Overview</h1>
+
+            <table class="table table-hover table-striped align-middle">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Category</th>
+                        <th>Amount</th>
+                        <th>Date</th>
+                        <th>Comment</th>
+                        <th colspan="2" class="text-center">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="expense : ${expenses}">
+                        <td th:text="${expense.name}"></td>
+                        <td th:text="${expense.category}"></td>
+                        <td th:text="${expense.amount}"></td>
+                        <td th:text="${expense.date}"></td>
+                        <td th:text="${expense.comment}"></td>
+
+                        <td class="text-center">
+                            <div class="action-buttons justify-content-center">
+                                <a th:href="@{/editexpense/{id}(id=${expense.id})}" class="btn btn-sm btn-primary">
+                                    Edit
+                                </a>
+
+                                <div sec:authorize="hasRole('ADMIN')">
+                                    <a th:href="@{/deleteexpense/{id}(id=${expense.id})}" class="btn btn-sm btn-danger">
+                                        Delete
+                                    </a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="text-center mt-4">
+                <a href="/addexpense" class="btn btn-lg btn-success">
+                    + Add New Expense
+                </a>
+            </div>
+
+            <div class="logout-box">
+                <form th:action="@{/logout}" method="post">
+                    <input type="submit" value="Log out" class="btn btn-danger" />
+                </form>
+            </div>
+
         </div>
     </div>
 </body>

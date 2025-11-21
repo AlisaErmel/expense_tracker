@@ -23,7 +23,7 @@ public class ExpenseController {
     @GetMapping("/expenselist")
     public String expenseList(Model model, Authentication authentication) {
         model.addAttribute("username", authentication.getName());
-        model.addAttribute("expenses", repository.findAll());
+        model.addAttribute("expenses", repository.findAllByOrderByIdDesc());
         return "expenselist";
     }
 
@@ -51,6 +51,12 @@ public class ExpenseController {
     public String editExpense(@PathVariable("id") Long id, Model model) {
         Expense expense = repository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid expense Id:" + id));
+
+        // Ensure date is not null
+        if (expense.getDate() == null) {
+            expense.setDate(java.time.LocalDate.now()); // default to today
+        }
+
         model.addAttribute("expense", expense);
         model.addAttribute("categories", Category.values());
         return "editexpense";
